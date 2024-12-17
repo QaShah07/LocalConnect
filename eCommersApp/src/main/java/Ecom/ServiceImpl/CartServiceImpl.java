@@ -44,7 +44,7 @@ public class CartServiceImpl implements CartService {
 
 			List<CartItem> cartItems = userCart.getCartItems();
 			if (cartItems != null) {
-				System.out.println("cart item imside loop...");
+				System.out.println("cart item inside loop...");
 				for (int i = 0; i < cartItems.size(); i++) {
 					System.out.println("inside loop");
 					if (cartItems.get(i).getProduct().getProductId() == productId&&

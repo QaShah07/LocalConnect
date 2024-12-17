@@ -7,7 +7,7 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-grid">
         <div className="footer-section">
-          <h4>POLICY INFO</h4>
+          <h4>Consumer Policy</h4>
           <ul>
             <li>Privacy Policy</li>
             <li>Terms of Sale</li>
@@ -17,9 +17,9 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footer-section">
-          <h4>COMPANY</h4>
+          <h4>Company</h4>
           <ul>
-            <li>Impact@eCommerseAPp</li>
+            <li>Impact@eCommerceApp</li>
             <li>Careers</li>
             <li>Blog</li>
             <li>Sitemap</li>
@@ -27,7 +27,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footer-section">
-          <h4>E-Commerse</h4>
+          <h4>E-Commerce</h4>
           <ul>
             <li>Product App</li>
             <li>Sell on our Website</li>
@@ -35,19 +35,35 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footer-section">
-          <h4>POPULAR LINKS</h4>
+          <h4>Developer Profile</h4>
           <ul>
-            <li>Top Product</li>
-            <li>Groceries</li>
-            <li>Vegetable</li>
-            <li>Fruits</li>
+            <li>
+              <a href="https://www.linkedin.com/in/qa-shah/" target="_blank" rel="noopener noreferrer">
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/qa_shah7/" target="_blank" rel="noopener noreferrer">
+                Instagram
+              </a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/share/1DJ8PHas37/?mibextid=qi2Omg" target="_blank" rel="noopener noreferrer">
+                Facebook
+              </a>
+            </li>
+            <li>
+              <a href="mailto:shahiitp07@gmail.com" target="_blank" rel="noopener noreferrer">
+                shahiitp07@gmail.com
+              </a>
+            </li>
           </ul>
         </div>
         <div className="footer-section">
-          <h4>SUBSCRIBE</h4>
+          <h3>Subscribe</h3>
           <div className="subscribe-box">
             <input type="text" placeholder="Enter your email" />
-            <button>SUBSCRIBE</button>
+            <button>Subscribe</button>
           </div>
           <p>
             Register now to get updates on promotions and coupons

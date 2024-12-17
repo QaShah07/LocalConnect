@@ -1,23 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../comp_css/Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCartShopping,
-  faSearch,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
-  const iconstyle = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  };
+  const [scrolling, setScrolling] = useState(false);
   const navigate = useNavigate();
 
-  let userId = localStorage.getItem("userid");
-  let name = localStorage.getItem("name");
+  const userId = localStorage.getItem("userid");
+  const name = localStorage.getItem("name");
+
+  // Handle scrolling to add or remove styles dynamically
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleLoginClick = () => {
     navigate("/login");
@@ -26,79 +35,72 @@ const Navbar = () => {
   const handleLogoutClick = () => {
     localStorage.removeItem("userid");
     localStorage.removeItem("jwtToken");
-    localStorage.removeItem("cartid")
-    localStorage.removeItem("name")
+    localStorage.removeItem("cartid");
+    localStorage.removeItem("name");
 
-    alert("Logout Successfully.....");
+    alert("Logout Successfully.");
     navigate("/");
   };
 
   return (
-    <nav className="navbar">
-      <div className="logo">
-        <h3
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          E-Commerce
-        </h3>
+    <nav className={`navbar ${scrolling ? "navbar-scrolling" : ""}`}>
+      {/* Logo Section */}
+      <div className="logo" onClick={() => navigate("/")}>
+        Local~Connect
       </div>
 
+      {/* Search Bar Section */}
       <div className="search-bar">
         <input
           type="text"
           placeholder="Search..."
-          onClick={() => {
-            navigate("/product");
-          }}
+          onClick={() => navigate("/product")}
         />
         <FontAwesomeIcon icon={faSearch} className="search-icon" />
       </div>
 
+      {/* Icons Section */}
       <div className="iconbutton">
+        {/* Cart Button */}
         <div
-          style={iconstyle}
-          onClick={() => {
-            navigate("/user/cart");
-          }}
           className="cart-button"
+          onClick={() => navigate("/user/cart")}
         >
           <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
-
-          <p style={{ margin: "4px" }}>Cart</p>
+          <p>Cart</p>
         </div>
+
+        {/* User Buttons */}
         {userId ? (
           <>
+            {/* User Profile */}
             <div
-              style={iconstyle}
               className="login-button"
-              onClick={() => {
-                navigate("/user/order-details");
-              }}
+              onClick={() => navigate("/user/order-details")}
             >
-              <FontAwesomeIcon icon={faUser} className="cart-icon" />
+              <FontAwesomeIcon icon={faUser} className="user-icon" />
               {name}
             </div>
-            <div onClick={handleLogoutClick}>Logout</div>
+
+            {/* Logout */}
+            <div className="logout-button" onClick={handleLogoutClick}>
+              Logout
+            </div>
           </>
         ) : (
           <>
-            <div
-              style={iconstyle}
-              className="login-button"
-              onClick={handleLoginClick}
-            >
-              <FontAwesomeIcon icon={faUser} className="cart-icon" />
+            {/* Login */}
+            <div className="login-button" onClick={handleLoginClick}>
+              <FontAwesomeIcon icon={faUser} className="user-icon" />
               Login
             </div>
+
+            {/* Sign In */}
             <div
-              className="iconbutton"
-              onClick={() => {
-                navigate("/register-user");
-              }}
+              className="signin-button"
+              onClick={() => navigate("/register-user")}
             >
-              SignIn
+              Sign In
             </div>
           </>
         )}

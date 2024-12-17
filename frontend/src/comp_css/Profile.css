@@ -1,58 +1,120 @@
-.profile-container {
-  width: 70%;
-  display: flex;
-  background-color: white;
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Profile Page */
+.profile-page {
   padding: 20px;
-  border: 1px solid #d12020;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-  margin: 40px;
-
-
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  min-height: 100vh;
 }
 
-.updatePassword {
-  width: 30%;
-  margin: 40px;
-  border: 2px solid rgb(223, 220, 220);
-  padding: 20px;
-  border-radius: 5px;
-  
-}
-
-
-.profile-details {
-  flex: 1;
-  padding-right: 20px;
-}
-
-.profile-header {
-  font-size: 24px;
+.profile-title {
+  text-align: center;
+  font-size: 28px;
   color: #333;
   margin-bottom: 20px;
 }
 
-.profile-details p {
-  font-size: 18px;
-  color: #666;
-  margin: 10px 0;
+.profile-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.latest-address {
-  flex: 1;
-  border-left: 1px solid #ccc;
-  padding-left: 20px;
+/* Profile Container */
+.profile-container {
+  flex: 2;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.latest-address-header {
-  font-size: 20px;
-  color: #333;
-  margin-bottom: 10px;
+.profile-header {
+  font-size: 22px;
+  color: #444;
+  margin-bottom: 20px;
 }
 
+.profile-details p,
 .latest-address p {
   font-size: 16px;
-  color: #666;
-  margin: 5px 0;
+  margin: 8px 0;
+}
+
+.status {
+  color: green;
+  font-weight: bold;
+}
+
+/* Latest Address */
+.latest-address {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+/* Update Password Section */
+.updatePassword {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.updatePassword form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.password-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.update-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.add-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.change-btn {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-wrapper {
+    flex-direction: column;
+  }
 }

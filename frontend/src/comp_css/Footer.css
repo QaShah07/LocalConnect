@@ -33,19 +33,32 @@
     margin-bottom: 20px;
     color: whitesmoke;
 }
+/* this css for developer profile link */
+.footer-section ul li a {
+    text-decoration: none; /* Removes underline from links */
+    color: whitesmoke; /* Matches the footer text color */
+    cursor: pointer; /* Displays hand cursor on hover */
+    transition: color 0.3s ease; /* Smooth transition effect */
+}
+
+.footer-section ul li a:hover {
+    color: #1da1f2; /* Change color on hover (e.g., light blue for better visibility) */
+    text-decoration: underline; /* Optional: Adds underline on hover */
+}
 
 /* Subscribe Box */
 .subscribe-box {
     display: flex;
-    margin-top: 22px;
-    padding: 10px;
+    justify-content: start; /* Align items to the left */
+    align-items: center; /* Vertically center the input and button */
+    gap: 0px; /* Add spacing between the input and button */
 }
 
 .subscribe-box input {
     flex: 1;
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 10px;
 }
 
 .subscribe-box button {
@@ -53,8 +66,10 @@
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
+    margin-left: 5px; /* Ensure no extra margin */
+    margin-bottom: 20px;
 }
 
 /* Footer Images */

@@ -1,50 +1,110 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar Container */
 .navbar {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #0e2e4a;
-  padding: 10px 60px;
+  padding: 10px 40px;
   color: white;
+  position: fixed; /* Fix the navbar at the top */
+  top: 0; /* Align it to the top of the viewport */
+  left: 0;
+  z-index: 1000; /* Ensure it appears above other content */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Navbar on Scroll */
+.navbar-scrolling {
+  background-color: #062d4a;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Add a margin to the body to prevent content overlap */
+body {
+  margin-top: 60px; /* Adjust this based on the navbar height */
+}
+
+/* Logo */
 .logo {
   font-size: 24px;
   font-weight: bold;
+  cursor: pointer;
 }
 
+/* Search Bar */
 .search-bar {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-top: 5px;
-}
-
-.search-icon {
-  display: flex;
-  align-items: center;
-  margin-right: 48px;
-  width: 40px;
-  height: 20px;
-  margin-bottom: 10px;
 }
 
 .search-bar input {
   width: 300px;
+  height: 35px;
   border: 2px solid #ccc;
-  border-radius: 9px;
-  height: 30px;
+  border-radius: 8px;
+  padding: 0 10px;
 }
 
+.search-icon {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Icons Section */
 .iconbutton {
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
-  gap: 40px;
+  gap: 20px;
 }
 
-.cart-icon {
+.cart-button,
+.login-button,
+.signin-button,
+.logout-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.cart-icon,
+.user-icon {
   width: 20px;
   height: 20px;
+}
 
+/* Hover Effects */
+.cart-button:hover,
+.login-button:hover,
+.signin-button:hover,
+.logout-button:hover {
+  color: #f0a500; /* Highlight color on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+
+  .search-bar {
+    margin: 10px 0;
+  }
+
+  .iconbutton {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
 }

@@ -5,11 +5,6 @@ import Address from "../components/Address";
 import UpdateAddress from "../components/UpdateAddress";
 
 const userid = localStorage.getItem("userid");
-const passData={
-  newpass:""
-}
-
-
 
 const Profile = () => {
   const [profileData, setProfileData] = useState(null);
@@ -21,26 +16,22 @@ const Profile = () => {
   const [error, setError] = useState(null);
 
   const handleChange = (e) => {
-    const val = e.target.value;
-    setNewPassword1({ ...passform, [e.target.name]: val });
+    setNewPassword1(e.target.value);
   };
 
   const handleSubmit = (e) => {
-    
     e.preventDefault();
+    const passData = { newpass: passform };
 
     api
-      .put(`/ecom/customers/update-password/${userid}`, passform)
-      .then((response) => {
+      .put(`/ecom/customers/update-password/${userid}`, passData)
+      .then(() => {
         alert("Password updated successfully");
         setShowPassSection(false);
       })
-      .catch((error) => {
-        alert("Error occures Try letter....")
+      .catch(() => {
+        alert("Error occurred. Try again later.");
       });
-  };
-  const changePassword = () => {
-    setShowPassSection(true);
   };
 
   const handlerUpdateAddress = (latestAddress) => {
@@ -48,15 +39,11 @@ const Profile = () => {
     setUpdateAddressModal(true);
   };
 
-  const showUpdateAddAddressModal = () => {
-    setUpdateAddressModal(false);
-  };
-  const showAddAddressModal = () => {
-    setAddressModal(false);
-  };
-  const handlerAddAddress = (userid) => {
+  const showUpdateAddAddressModal = () => setUpdateAddressModal(false);
+  const showAddAddressModal = () => setAddressModal(false);
+
+  const handlerAddAddress = () => {
     setAddressModal(true);
-    console.log("called...... show");
   };
 
   useEffect(() => {
@@ -71,44 +58,29 @@ const Profile = () => {
       });
   }, [userid]);
 
-
-  const {newpass}=passform;
   const latestAddress = profileData?.address?.length
     ? profileData.address[profileData.address.length - 1]
     : null;
 
   return (
-    <>
-      <h2
-        style={{
-          color: "green",
-          textAlign: "center",
-          margin: "20px",
-        }}
-      >
-        Profile Section
-      </h2>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-        }}
-      >
+    <div className="profile-page">
+      <h2 className="profile-title">Profile Section</h2>
+      <div className="profile-wrapper">
         <div className="profile-container">
           {addressModal && <Address onclose={showAddAddressModal} />}
           {updateaddressModal && (
-            <UpdateAddress address={add} onclose={showAddAddressModal} />
+            <UpdateAddress address={add} onclose={showUpdateAddAddressModal} />
           )}
 
           <div className="profile-details">
             <h1 className="profile-header">Profile Details</h1>
-
             {profileData ? (
               <>
-                <p style={{ color: "green" }}>
+                <p>
                   <strong>Account Status:</strong>{" "}
-                  {profileData.userAccountStatus}
+                  <span className="status">
+                    {profileData.userAccountStatus}
+                  </span>
                 </p>
                 <p>
                   <strong>Name:</strong> {profileData.firstName}{" "}
@@ -117,12 +89,11 @@ const Profile = () => {
                 <p>
                   <strong>Email:</strong> {profileData.email}
                 </p>
-
                 <p>
-                  <strong>Phone Number:</strong> {profileData.phoneNumber}
+                  <strong>Phone:</strong> {profileData.phoneNumber}
                 </p>
                 <p>
-                  <strong>Registration :</strong>{" "}
+                  <strong>Registration:</strong>{" "}
                   {profileData.registerTime.substring(0, 10)}
                 </p>
               </>
@@ -130,12 +101,13 @@ const Profile = () => {
               <p>Loading profile data...</p>
             )}
           </div>
+
           <div className="latest-address">
             {latestAddress ? (
               <>
-                <h2 className="latest-address-header">Latest Address</h2>
+                <h2>Latest Address</h2>
                 <p>
-                  <strong>Buiding :</strong> {latestAddress.flatNo}
+                  <strong>Building:</strong> {latestAddress.flatNo}
                 </p>
                 <p>
                   <strong>Street:</strong> {latestAddress.street}
@@ -149,62 +121,56 @@ const Profile = () => {
                 <p>
                   <strong>Zip Code:</strong> {latestAddress.zipCode}
                 </p>
-
                 <button
-                  onClick={() => {
-                    handlerUpdateAddress(latestAddress);
-                  }}
+                  className="btn update-btn"
+                  onClick={() => handlerUpdateAddress(latestAddress)}
                 >
                   Update Address
                 </button>
               </>
             ) : (
               <>
-                <h2>Address Not updated</h2>
-                <button
-                  onClick={() => {
-                    handlerAddAddress();
-                  }}
-                >
+                <h2>No Address Found</h2>
+                <button className="btn add-btn" onClick={handlerAddAddress}>
                   Add Address
                 </button>
               </>
             )}
           </div>
         </div>
+
         <div className="updatePassword">
           {showPassSection ? (
             <form onSubmit={handleSubmit}>
               <label htmlFor="newPassword">New Password:</label>
               <input
                 type="password"
-                name="newPassword"
-                value={newpass}
+                id="newPassword"
+                value={passform}
                 onChange={handleChange}
               />
               {error && <p className="error">{error}</p>}
-              <button type="submit">Update Password</button>
-              <button
-                type="button"
-                onClick={() => {
-                  setShowPassSection(false);
-                }}
-              >
-                Cancel update
-              </button>
+              <div className="password-buttons">
+                <button className="btn update-btn" type="submit">
+                  Update Password
+                </button>
+                <button
+                  className="btn cancel-btn"
+                  type="button"
+                  onClick={() => setShowPassSection(false)}
+                >
+                  Cancel
+                </button>
+              </div>
             </form>
           ) : (
-            <button
-              onClick={() => {
-                changePassword();
-              }}
-            >
-              ChangePassword
+            <button className="btn change-btn" onClick={() => setShowPassSection(true)}>
+              Change Password
             </button>
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

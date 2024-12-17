@@ -31,7 +31,7 @@ const Footer = () => {
           <ul>
             <li>Product App</li>
             <li>Sell on our Website</li>
-            <li>Media Enquiries</li>
+            <li>Media Enquirie</li>
           </ul>
         </div>
         <div className="footer-section">

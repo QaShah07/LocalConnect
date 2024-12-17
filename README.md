@@ -38,7 +38,7 @@ https://api-ecom.up.railway.app//swagger-ui/index.html#/
 
 To get started with this project, you will need to have the following installed on your local machine:
 
-- JDK 17+
+- JDK 21+
 - Maven 3+
 
 

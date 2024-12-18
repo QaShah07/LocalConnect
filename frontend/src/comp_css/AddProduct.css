@@ -1,13 +1,16 @@
 .adminAddProduct {
   width: 70%;
-  margin: 10px;
+  margin: 10px auto;
   padding: 20px;
   border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
   font-size: 24px;
   margin-bottom: 20px;
+  color: #333;
 }
 
 form {
@@ -17,11 +20,17 @@ form {
 
 .input-group {
   margin-bottom: 15px;
+  position: relative;
 }
 
 label {
   font-weight: bold;
   margin-bottom: 5px;
+  display: block;
+}
+
+.required {
+  color: red;
 }
 
 input[type="text"],
@@ -42,26 +51,28 @@ button[type="submit"] {
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 10px; 
+  transition: background-color 0.3s ease;
 }
 
 button[type="submit"]:hover {
   background-color: #0056b3;
 }
 
-.input-group img {
+button[type="submit"]:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.image-preview img {
   max-width: 100%;
   height: auto;
-}
-
-.input-group.select {
-  position: relative;
-}
-
-.input-group.select select {
-  width: 100%;
-  padding: 10px;
+  margin-top: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
 }
